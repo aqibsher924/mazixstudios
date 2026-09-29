@@ -5,19 +5,19 @@ import { SectionMarker } from "@/components/ui/section-marker";
 
 const columns = [
   {
-    tag: "01 — Fragmentation",
+    tag: "01 : Fragmentation",
     title: "Too many vendors, one broken experience.",
-    body: "XR in one shop, backend in another, AI as an afterthought — integration cost explodes and ownership disappears.",
+    body: "XR in one shop, backend in another, AI as an afterthought : integration cost explodes and ownership disappears.",
     chips: ["Siloed teams", "Slow handoffs", "Version drift"],
   },
   {
-    tag: "02 — Complexity",
+    tag: "02 : Complexity",
     title: "Modern products span hardware, vision, and cloud.",
     body: "Cameras, headsets, live APIs, and compliance-ready infrastructure rarely share a roadmap unless someone owns the full picture.",
     chips: ["Edge + cloud", "Real-time AI", "Ops at scale"],
   },
   {
-    tag: "03 — Velocity",
+    tag: "03 : Velocity",
     title: "Demos are easy. Production is the work.",
     body: "Without senior engineering across stacks, pilots stall before they reach users, metrics, or revenue.",
     chips: ["Pilot purgatory", "Tech debt", "Lost IP"],

@@ -25,9 +25,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
-              A complete IT solution studio — XR, AI, cloud, and product
-              engineering for teams that need one partner across the full
-              stack.
+              Mazix Studios is a technology company for spatial systems, applied
+              AI, and the cloud those systems run on.
             </p>
             <p className="mt-6 font-mono text-xs text-muted-foreground">
               Lahore, Pakistan · Remote worldwide
@@ -38,7 +37,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-muted">
               {[
                 ["/services", "Services"],
-                ["/work", "Work"],
+                ["/work", "Engagements"],
                 ["/industries", "Fields"],
                 ["/about", "About"],
                 ["/process", "Process"],

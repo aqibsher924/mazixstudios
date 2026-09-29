@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/site/page-hero";
 
 export const metadata: Metadata = {
-  title: "Privacy — Mazix Studios",
+  title: "Privacy | Mazix Studios",
   description: "How Mazix Studios handles information sent through this website.",
 };
 

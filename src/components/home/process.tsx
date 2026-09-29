@@ -7,7 +7,7 @@ const stages = [
   {
     stage: "Stage 01",
     title: "Discover",
-    body: "We map goals, users, hardware, and constraints — then define an architecture every discipline can execute against.",
+    body: "We map goals, users, hardware, and constraints : then define an architecture every discipline can execute against.",
   },
   {
     stage: "Stage 02",
@@ -17,7 +17,7 @@ const stages = [
   {
     stage: "Stage 03",
     title: "Launch & scale",
-    body: "Hardening, deployment, documentation, and iteration — so the system keeps improving after the first release.",
+    body: "Hardening, deployment, documentation, and iteration : so the system keeps improving after the first release.",
   },
 ];
 

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getService, services } from "@/lib/site";
-import { PracticeMosaic } from "@/components/site/practice-mosaic";
 import { PageCta } from "@/components/site/page-hero";
 
 export function generateStaticParams() {
@@ -16,9 +15,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const service = getService(slug);
-  if (!service) return { title: "Service — Mazix Studios" };
+  if (!service) return { title: "Service | Mazix Studios" };
   return {
-    title: `${service.title} — Mazix Studios`,
+    title: `${service.title} | Mazix Studios`,
     description: service.summary,
   };
 }
@@ -32,7 +31,6 @@ export default async function ServicePage({
   const service = getService(slug);
   if (!service) notFound();
 
-  const nicheProjects = service.works;
 
   return (
     <>
@@ -77,14 +75,6 @@ export default async function ServicePage({
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <h2 className="headline-serif text-3xl">Builds in this niche</h2>
-          <div className="mt-8">
-            <PracticeMosaic slugs={nicheProjects} />
-          </div>
         </div>
       </section>
       <PageCta />

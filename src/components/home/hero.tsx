@@ -40,8 +40,8 @@ export function Hero() {
             </AnimatePresence>
           </div>
           <p className="max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            One studio across that sequence: the headset, the models, and the
-            cloud they run on. Built as systems, not as separate demos.
+            Mazix Studios designs and runs the full system: spatial products,
+            the models that guide them, and the cloud they depend on.
           </p>
           <div className="mt-8 flex gap-2" aria-hidden>
             {focus.map((item, itemIndex) => (
@@ -64,7 +64,7 @@ export function Hero() {
               href="/services"
               className="glass inline-flex min-h-11 items-center justify-center rounded-full border border-border px-7 py-3.5 text-sm font-medium"
             >
-              See the sequence
+              Explore the company
             </Link>
           </div>
         </div>

@@ -17,7 +17,7 @@ const stats = [
   {
     label: "Accountable team",
     value: "01",
-    note: "One partner from architecture to launch — no handoffs.",
+    note: "One partner from architecture to launch : no handoffs.",
   },
   {
     label: "Production focus",

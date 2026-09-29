@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------- */
-/* Design tokens — premium dual theme */
+/* Design tokens : premium dual theme */
 /* ---------------------------------- */
 
 :root {
@@ -216,6 +216,89 @@ body {
 /* ---------------------------------- */
 /* Accessibility                       */
 /* ---------------------------------- */
+
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: #070b14;
+  color: #f4f7fb;
+  animation: loader-in 0.45s ease both;
+}
+
+.site-loader-out {
+  animation: loader-out 0.55s ease forwards;
+}
+
+.site-loader-mark {
+  height: 4.5rem;
+  width: auto;
+  animation: loader-mark 1.4s ease both;
+}
+
+.site-loader-name {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.site-loader-track {
+  width: 9rem;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.site-loader-bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  background: #5b9bff;
+  animation: loader-bar 1.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes loader-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loader-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes loader-mark {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes loader-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {

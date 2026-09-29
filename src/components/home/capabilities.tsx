@@ -11,7 +11,7 @@ const layers = [
     points: [
       "AR/VR/MR applications for Quest, PICO, and enterprise wearables",
       "Interaction systems, multiplayer, and trainer–trainee workflows",
-      "Zero-friction UX designed for operators — not slide decks",
+      "Zero-friction UX designed for operators : not slide decks",
     ],
     image: "/media/vr.jpg",
     alt: "Person wearing a virtual reality headset",
@@ -31,7 +31,7 @@ const layers = [
     name: "Infrastructure layer",
     title: "Cloud and backend built to scale with you.",
     points: [
-      "AWS architecture — compute, storage, serverless, and networking",
+      "AWS architecture : compute, storage, serverless, and networking",
       "Web applications, dashboards, APIs, auth, and integrations",
       "Deployment, monitoring, and secure data governance",
     ],

@@ -61,8 +61,8 @@ export function StackGrid() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="headline-serif mt-10 max-w-3xl text-[clamp(1.9rem,4.5vw,2.9rem)] leading-[1.15]">
-            A connected ecosystem —{" "}
-            <em className="not-italic text-accent">not a single</em> framework.
+            One operating stack,{" "}
+            <em className="not-italic text-accent">chosen for production.</em>
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted">
             We choose tools for reliability and fit, then integrate them into

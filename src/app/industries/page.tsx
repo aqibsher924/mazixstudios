@@ -3,7 +3,7 @@ import { fields } from "@/lib/site";
 import { PageCta, PageHero } from "@/components/site/page-hero";
 
 export const metadata: Metadata = {
-  title: "Fields — Mazix Studios",
+  title: "Fields | Mazix Studios",
   description:
     "Where Mazix works: XR, healthcare, manufacturing, automotive, research, energy, logistics, labs, and enterprise operations.",
 };

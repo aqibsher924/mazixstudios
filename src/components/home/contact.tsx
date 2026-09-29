@@ -33,7 +33,7 @@ export function Contact() {
             </h2>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
               Tell us about your product, timeline, and stack. We&apos;ll
-              respond with a clear path — scope, architecture, and how Mazix
+              respond with a clear path: scope, architecture, and how Mazix
               owns delivery end to end.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">

@@ -1,25 +1,28 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "@/lib/site";
+import { engagements, getProject } from "@/lib/site";
 import { PageCta, PageHero } from "@/components/site/page-hero";
 
 export const metadata: Metadata = {
-  title: "Work — Mazix Studios",
+  title: "Engagements | Mazix Studios",
   description:
-    "Selected Mazix projects across VR training, XR products, guided AR, and cloud video platforms.",
+    "A small number of engagements Mazix can describe in public. Most client systems remain private.",
 };
 
 export default function WorkPage() {
   return (
     <>
       <PageHero
-        kicker="Work"
-        title="Selected projects."
-        body="A sample of systems we have designed and built. Many client engagements stay private. These are ones we can describe."
+        kicker="Engagements"
+        title="Work the company can name."
+        body="Most systems Mazix runs are private. These are engagements we are able to describe. They are not a catalogue of every internal task."
       />
       <section className="mx-auto grid max-w-6xl gap-6 px-5 py-16 sm:px-8 md:grid-cols-2">
-        {projects.map((project) => (
+        {engagements.map((slug) => {
+          const project = getProject(slug);
+          if (!project) return null;
+          return (
           <Link
             key={project.slug}
             href={`/work/${project.slug}`}
@@ -44,7 +47,8 @@ export default function WorkPage() {
               </p>
             </div>
           </Link>
-        ))}
+          );
+        })}
       </section>
       <PageCta />
     </>

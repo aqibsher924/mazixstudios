@@ -7,17 +7,17 @@ const pillars = [
   {
     n: "01",
     title: "End-to-end delivery",
-    body: "Strategy, design, engineering, cloud, and launch — one accountable partner instead of fragmented vendors.",
+    body: "Strategy, design, engineering, cloud, and launch : one accountable partner instead of fragmented vendors.",
   },
   {
     n: "02",
     title: "Integrated stacks",
-    body: "Unity and OpenXR beside Node, Python, AWS, and modern web — architected to work together in production.",
+    body: "Unity and OpenXR beside Node, Python, AWS, and modern web : architected to work together in production.",
   },
   {
     n: "03",
     title: "Production discipline",
-    body: "Security, observability, and maintainability from day one — not bolted on after the demo.",
+    body: "Security, observability, and maintainability from day one : not bolted on after the demo.",
   },
 ];
 
@@ -41,7 +41,7 @@ export function IntroPillars() {
             <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg">
               Clients come to Mazix when a single-stack agency is not enough.
               We combine spatial computing, applied AI, and enterprise-grade
-              cloud so your product feels cohesive — in the headset, on the
+              cloud so your product feels cohesive : in the headset, on the
               web, and in the data layer behind it.
             </p>
           </motion.div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageCta, PageHero } from "@/components/site/page-hero";
 
 export const metadata: Metadata = {
-  title: "About — Mazix Studios",
+  title: "About | Mazix Studios",
   description:
     "Mazix Studios is a Lahore technology studio for XR, spatial computing, AI, cloud, and web products.",
 };
@@ -19,8 +19,8 @@ export default function AboutPage() {
     <>
       <PageHero
         kicker="About"
-        title="A studio for systems that leave the screen."
-        body="Mazix Studios builds complete IT: the spatial product, the intelligence around it, and the cloud it runs on. The work started in games, moved through VR and AR, and now includes vision, copilots, and production infrastructure."
+        title="A company built for systems that leave the screen."
+        body="Mazix Studios is the company behind the spatial product, the intelligence around it, and the cloud it runs on. The practice began in interactive software, matured through VR and AR, and now includes vision, copilots, and production infrastructure."
       />
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-5 text-base leading-relaxed text-muted">

@@ -9,7 +9,7 @@ const work = [
     title: "Enterprise AR/MR workflow platform",
     category: "Spatial · AI · Cloud",
     description:
-      "Glasses-native guidance, peripheral camera perception, human validation dashboards, and live APIs on managed AWS — built as one system.",
+      "Glasses-native guidance, peripheral camera perception, human validation dashboards, and live APIs on managed AWS : built as one system.",
     image:
       "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=1400&q=80",
   },
@@ -17,7 +17,7 @@ const work = [
     title: "VR training & simulation suites",
     category: "Quest · Unity · Multiplayer",
     description:
-      "High-fidelity training environments for healthcare, automotive, and research partners — from single-user simulations to networked scenarios.",
+      "High-fidelity training environments for healthcare, automotive, and research partners : from single-user simulations to networked scenarios.",
     image:
       "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1400&q=80",
   },
@@ -47,7 +47,7 @@ export function Showcase() {
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
             Representative engagements across XR, AI, and cloud. Many client
-            projects run under NDA — ask us for a relevant walkthrough.
+            projects run under NDA : ask us for a relevant walkthrough.
           </p>
         </motion.div>
         <div className="mt-14 space-y-6 sm:space-y-8">

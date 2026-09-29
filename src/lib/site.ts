@@ -600,6 +600,16 @@ export const processSteps = [
   },
 ] as const;
 
+export const engagements = [
+  "meditation-vr",
+  "vr-car-painting",
+  "ultra-boom-xr",
+  "oralsim",
+  "cloudxr-stream",
+  "guided-ar",
+  "teach-me-robot",
+] as const;
+
 export function getService(slug: string) {
   return services.find((item) => item.slug === slug);
 }

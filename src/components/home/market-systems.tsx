@@ -7,7 +7,7 @@ export function MarketSystems() {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <p className="section-label">Running in the market</p>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-          These products are already live. Mazix builds on them. We did not make Quest, Gemini, or AWS.
+          Production platforms Mazix designs for and deploys against. Quest, Gemini, Whisper, AWS, and Google Cloud are part of the operating stack.
         </p>
       </div>
       <div className="marquee-fade mt-6 overflow-hidden">

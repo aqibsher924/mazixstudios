@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { SiteLoader } from "@/components/site/site-loader";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,9 +26,9 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mazixstudios.com"),
-  title: "Mazix Studios — Complete IT Solutions | XR, AI, Cloud & Web",
+  title: "Mazix Studios | AI Systems, Spatial Computing, and Cloud",
   description:
-    "Mazix Studios is a full-spectrum technology studio. We design, build, and ship AR/VR/MR experiences, AI & computer vision systems, cloud infrastructure, and modern web platforms — one team, every layer, production-grade.",
+    "Mazix Studios designs and operates AI, XR, and cloud systems for organizations that need one company across the full stack.",
   keywords: [
     "Mazix Studios",
     "IT solutions",
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     "Unity development",
   ],
   openGraph: {
-    title: "Mazix Studios — Complete IT Solutions",
+    title: "Mazix Studios | AI Systems, Spatial Computing, and Cloud",
     description:
       "One studio for every layer of your product: XR & spatial, AI & vision, cloud & DevOps, web & mobile.",
     type: "website",
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to main content
         </a>
         <ThemeProvider>
+          <SiteLoader />
           <Header />
           <div id="main" className="flex-1">
             {children}

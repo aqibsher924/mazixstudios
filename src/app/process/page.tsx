@@ -3,7 +3,7 @@ import { processSteps } from "@/lib/site";
 import { PageCta, PageHero } from "@/components/site/page-hero";
 
 export const metadata: Metadata = {
-  title: "Process — Mazix Studios",
+  title: "Process | Mazix Studios",
   description:
     "How Mazix takes a product from discovery to a deployed XR, AI, and cloud system.",
 };

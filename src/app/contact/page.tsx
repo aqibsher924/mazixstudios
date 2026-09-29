@@ -3,7 +3,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { ContactForm } from "@/components/site/contact-form";
 
 export const metadata: Metadata = {
-  title: "Contact — Mazix Studios",
+  title: "Contact | Mazix Studios",
   description:
     "Start a project with Mazix Studios. We reply within one to two business days.",
 };

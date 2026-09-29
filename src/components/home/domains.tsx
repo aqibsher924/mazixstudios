@@ -77,7 +77,7 @@ export function Domains() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/65 to-background/15" />
                 <div className="relative">
                   <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
-                    {d.n} — {d.label}
+                    {d.n} : {d.label}
                   </p>
                   <h3 className="mt-3 max-w-sm text-xl font-semibold leading-snug tracking-tight sm:text-2xl">
                     {d.title}

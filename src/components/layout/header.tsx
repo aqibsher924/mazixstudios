@@ -9,7 +9,7 @@ import { clsx } from "clsx";
 
 const nav = [
   { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
+  { href: "/work", label: "Engagements" },
   { href: "/industries", label: "Fields" },
   { href: "/about", label: "About" },
   { href: "/process", label: "Process" },
