@@ -47,7 +47,7 @@ export default async function ServicePage({
           </p>
         </div>
       </header>
-      <section className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2">
+      <section className="mx-auto grid max-w-6xl items-stretch gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2">
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             What is included
@@ -61,11 +61,11 @@ export default async function ServicePage({
             ))}
           </ul>
         </div>
-        <div className="rounded-3xl border border-border bg-card p-7">
+        <div className="h-full rounded-3xl border border-border bg-card p-7">
           <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             Typical stack
           </h2>
-          <ul className="mt-6 flex flex-wrap gap-2">
+          <ul className="mt-6 flex flex-wrap content-start gap-2">
             {service.stack.map((item) => (
               <li
                 key={item}
