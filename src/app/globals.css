@@ -1,26 +1,233 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------- */
+/* Design tokens — premium dual theme */
+/* ---------------------------------- */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f6f8;
+  --foreground: #121420;
+  --muted: #4b5568;
+  --muted-foreground: #5c6578;
+  --border: rgba(18, 20, 32, 0.09);
+  --border-strong: rgba(18, 20, 32, 0.16);
+  --card: #ffffff;
+  --card-foreground: #121420;
+  --surface: #e8ecf1;
+  --glass: rgba(255, 255, 255, 0.72);
+  --accent: #01956a;
+  --accent-soft: rgba(1, 247, 146, 0.16);
+  --accent-foreground: #121420;
+  --ring: rgba(1, 149, 106, 0.4);
+  --hero-glow: rgba(1, 247, 146, 0.22);
+  --shadow-card: 0 1px 2px rgba(18, 20, 32, 0.04), 0 14px 36px rgba(18, 20, 32, 0.06);
+}
+
+.dark {
+  --background: #121420;
+  --foreground: #f7f8fb;
+  --muted: #a7b0c0;
+  --muted-foreground: #8b95a8;
+  --border: rgba(247, 248, 251, 0.08);
+  --border-strong: rgba(1, 247, 146, 0.28);
+  --card: #181b2c;
+  --card-foreground: #f7f8fb;
+  --surface: #0e1219;
+  --glass: rgba(18, 20, 32, 0.72);
+  --accent: #01f792;
+  --accent-soft: rgba(1, 247, 146, 0.12);
+  --accent-foreground: #121420;
+  --ring: rgba(1, 247, 146, 0.45);
+  --hero-glow: rgba(1, 247, 146, 0.14);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 18px 44px rgba(0, 0, 0, 0.35);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface: var(--surface);
+  --color-glass: var(--glass);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-jetbrains);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------------------------------- */
+/* Base                                */
+/* ---------------------------------- */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  letter-spacing: -0.006em;
+  overflow-x: clip;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+::selection {
+  background: #01f792;
+  color: #121420;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------------------------------- */
+/* Typography helpers                  */
+/* ---------------------------------- */
+
+.section-label {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.headline-serif {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.038em;
+  text-wrap: balance;
+}
+
+.headline-serif em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ---------------------------------- */
+/* Glass & texture                     */
+/* ---------------------------------- */
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero-mesh {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -10%, var(--hero-glow), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 100% 10%, var(--accent-soft), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 0% 30%, var(--accent-soft), transparent 70%),
+    var(--background);
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 25%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 25%, transparent 78%);
+}
+
+/* ---------------------------------- */
+/* Motion                              */
+/* ---------------------------------- */
+
+.card-hover {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    background-color 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+
+.marquee-fade {
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-wrap:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.3;
+  }
+}
+
+.animate-scroll-dot {
+  animation: scroll-dot 2s ease-in-out infinite;
+}
+
+/* ---------------------------------- */
+/* Accessibility                       */
+/* ---------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-scroll-dot {
+    animation: none;
+  }
+  .card-hover,
+  .card-hover:hover {
+    transition: none;
+    transform: none;
+  }
 }
