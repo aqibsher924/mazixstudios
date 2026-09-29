@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function Footer() {
@@ -7,9 +8,13 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
-              <span className="glass flex h-9 w-9 items-center justify-center rounded-xl border border-border font-mono text-[10px] font-semibold tracking-widest text-accent">
-                MZ
-              </span>
+              <Image
+                src="/brand/logo-mark.png"
+                alt=""
+                width={140}
+                height={102}
+                className="h-9 w-auto"
+              />
               <span className="flex flex-col leading-none">
                 <span className="text-[15px] font-semibold tracking-tight">
                   Mazix
@@ -31,38 +36,19 @@ export function Footer() {
           <nav aria-label="Footer">
             <p className="section-label mb-5">Explore</p>
             <ul className="space-y-3 text-sm text-muted">
-              <li>
-                <Link
-                  href="#capabilities"
-                  className="transition-colors hover:text-foreground"
-                >
-                  Capabilities
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#process"
-                  className="transition-colors hover:text-foreground"
-                >
-                  Process
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#domains"
-                  className="transition-colors hover:text-foreground"
-                >
-                  Domains
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#work"
-                  className="transition-colors hover:text-foreground"
-                >
-                  Selected work
-                </Link>
-              </li>
+              {[
+                ["/services", "Services"],
+                ["/work", "Work"],
+                ["/industries", "Fields"],
+                ["/about", "About"],
+                ["/process", "Process"],
+              ].map(([href, label]) => (
+                <li key={href}>
+                  <Link href={href} className="transition-colors hover:text-foreground">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
           <div>
@@ -78,10 +64,18 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#contact"
+                  href="/contact"
                   className="transition-colors hover:text-foreground"
                 >
                   Request a consultation
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Privacy
                 </Link>
               </li>
             </ul>

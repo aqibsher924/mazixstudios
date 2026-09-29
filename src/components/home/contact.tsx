@@ -38,10 +38,10 @@ export function Contact() {
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <a
-                href="mailto:hello@mazixstudios.com"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#01f792] px-7 py-3.5 text-sm font-semibold text-[#121420] transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
+                href="/contact"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
               >
-                hello@mazixstudios.com
+                Start a project
                 <span aria-hidden>↗</span>
               </a>
               <a

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,11 +8,12 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { clsx } from "clsx";
 
 const nav = [
-  { href: "#capabilities", label: "Capabilities" },
-  { href: "#process", label: "Process" },
-  { href: "#domains", label: "Domains" },
-  { href: "#work", label: "Work" },
-  { href: "#contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/industries", label: "Fields" },
+  { href: "/about", label: "About" },
+  { href: "/process", label: "Process" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
@@ -48,9 +50,14 @@ export function Header() {
             className="group flex items-center gap-3"
             onClick={() => setOpen(false)}
           >
-            <span className="glass flex h-9 w-9 items-center justify-center rounded-xl border border-border font-mono text-[10px] font-semibold tracking-widest text-accent shadow-card">
-              MZ
-            </span>
+            <Image
+              src="/brand/logo-mark.png"
+              alt=""
+              width={140}
+              height={102}
+              priority
+              className="h-9 w-auto"
+            />
             <span className="flex flex-col leading-none">
               <span className="text-[15px] font-semibold tracking-tight">
                 Mazix
@@ -79,8 +86,8 @@ export function Header() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link
-              href="#contact"
-              className="hidden rounded-full bg-[#01f792] px-5 py-2.5 text-sm font-semibold text-[#121420] transition-all duration-200 hover:brightness-110 active:scale-[0.98] sm:inline-flex"
+              href="/contact"
+              className="hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] sm:inline-flex"
             >
               Start a project
             </Link>
@@ -148,8 +155,8 @@ export function Header() {
                 className="mt-8"
               >
                 <Link
-                  href="#contact"
-                  className="inline-flex rounded-full bg-[#01f792] px-7 py-3.5 text-sm font-semibold text-[#121420]"
+                  href="/contact"
+                  className="inline-flex rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white"
                   onClick={() => setOpen(false)}
                 >
                   Start a project ↗

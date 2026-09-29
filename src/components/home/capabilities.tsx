@@ -13,8 +13,7 @@ const layers = [
       "Interaction systems, multiplayer, and trainer–trainee workflows",
       "Zero-friction UX designed for operators — not slide decks",
     ],
-    image:
-      "https://images.unsplash.com/photo-1622979135225-d2fe26975025?auto=format&fit=crop&w=1200&q=80",
+    image: "/media/vr.jpg",
     alt: "Person wearing a virtual reality headset",
   },
   {
@@ -25,8 +24,7 @@ const layers = [
       "LLM / VLM copilots, speech interfaces, and multimodal systems",
       "Human-in-the-loop validation and operational analytics",
     ],
-    image:
-      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
+    image: "/media/vision.jpg",
     alt: "Abstract visualization of an artificial intelligence network",
   },
   {
@@ -37,8 +35,7 @@ const layers = [
       "Web applications, dashboards, APIs, auth, and integrations",
       "Deployment, monitoring, and secure data governance",
     ],
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    image: "/media/cloud.jpg",
     alt: "Earth from space representing global cloud infrastructure",
   },
 ];
