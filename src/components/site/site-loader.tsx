@@ -1,22 +1,22 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Logo } from "@/components/brand/logo";
 
 export function SiteLoader() {
   const [phase, setPhase] = useState<"in" | "out" | "gone">("in");
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || sessionStorage.getItem("mazix-opened") === "1") {
+    if (reduce || sessionStorage.getItem("mazix-glass-opened") === "1") {
       setPhase("gone");
       return;
     }
-    const leave = window.setTimeout(() => setPhase("out"), 1700);
+    const leave = window.setTimeout(() => setPhase("out"), 2100);
     const done = window.setTimeout(() => {
-      sessionStorage.setItem("mazix-opened", "1");
+      sessionStorage.setItem("mazix-glass-opened", "1");
       setPhase("gone");
-    }, 2300);
+    }, 2750);
     return () => {
       window.clearTimeout(leave);
       window.clearTimeout(done);
@@ -32,17 +32,13 @@ export function SiteLoader() {
       aria-live="polite"
       aria-label="Opening Mazix Studios"
     >
-      <Image
-        src="/brand/logo-mark.png"
-        alt=""
-        width={140}
-        height={102}
-        priority
-        className="site-loader-mark"
-      />
-      <p className="site-loader-name">Mazix Studios</p>
-      <div className="site-loader-track" aria-hidden>
-        <span className="site-loader-bar" />
+      <span className="loader-orb loader-orb-a" aria-hidden />
+      <span className="loader-orb loader-orb-b" aria-hidden />
+      <div className="loader-glass">
+        <Logo className="loader-logo h-16 w-16" />
+        <p className="loader-word">Mazix</p>
+        <p className="loader-sub">Studios</p>
+        <span className="loader-line" aria-hidden />
       </div>
     </div>
   );

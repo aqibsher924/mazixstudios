@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Logo } from "@/components/brand/logo";
 import { focus } from "@/lib/site";
 
 export function Hero() {
@@ -16,23 +17,22 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="hero-mesh relative overflow-hidden">
-      <div className="grid-pattern absolute inset-0" aria-hidden />
-      <div className="relative mx-auto grid min-h-[88vh] max-w-6xl items-center gap-12 px-5 pb-16 pt-32 sm:px-8 lg:grid-cols-[1.25fr_0.75fr]">
+    <section className="px-3 pb-8 pt-28 sm:px-5 sm:pt-32">
+      <div className="glass-slab mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <p className="section-label mb-6">Mazix Studios · Lahore</p>
-          <h1 className="headline-serif text-[clamp(2.6rem,6.5vw,5rem)] leading-[0.98]">
+          <p className="section-label">AI systems · Spatial computing · Cloud</p>
+          <h1 className="headline-serif mt-5 text-[clamp(2.5rem,6vw,4.6rem)] leading-[0.98]">
             Systems for the
             <span className="block">physical world.</span>
           </h1>
-          <div className="mt-8 h-16 overflow-hidden sm:h-14">
+          <div className="mt-6 h-12 overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.p
                 key={focus[index]}
                 className="text-xl font-medium text-accent sm:text-2xl"
-                initial={{ y: 24, opacity: 0 }}
+                initial={{ y: 18, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -24, opacity: 0 }}
+                exit={{ y: -18, opacity: 0 }}
                 transition={{ duration: 0.35 }}
               >
                 {focus[index]}
@@ -43,49 +43,49 @@ export function Hero() {
             Mazix Studios designs and runs the full system: spatial products,
             the models that guide them, and the cloud they depend on.
           </p>
-          <div className="mt-8 flex gap-2" aria-hidden>
-            {focus.map((item, itemIndex) => (
-              <span
-                key={item}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  itemIndex === index ? "w-8 bg-accent" : "w-2 bg-border"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/contact"
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white hover:brightness-110"
-            >
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link href="/contact" className="btn-glow">
               Start a project
             </Link>
-            <Link
-              href="/services"
-              className="glass inline-flex min-h-11 items-center justify-center rounded-full border border-border px-7 py-3.5 text-sm font-medium"
-            >
+            <Link href="/services" className="btn-glass">
               Explore the company
             </Link>
           </div>
         </div>
-        <ol className="shadow-card rounded-3xl border border-border bg-card p-3">
-          {focus.map((item, itemIndex) => (
-            <li key={item}>
-              <button
-                type="button"
-                onClick={() => setIndex(itemIndex)}
-                className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm transition-colors ${
-                  itemIndex === index ? "bg-accent-soft text-foreground" : "text-muted"
-                }`}
-              >
-                <span className="font-mono text-[11px] text-accent">
-                  {String(itemIndex + 1).padStart(2, "0")}
-                </span>
-                {item}
-              </button>
-            </li>
-          ))}
-        </ol>
+
+        <div className="glass-slab relative min-h-[22rem] overflow-hidden !p-0">
+          <div className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-accent/30 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-16 -right-8 h-48 w-48 rounded-full bg-cyan-300/20 blur-3xl" />
+          <div className="relative flex h-full min-h-[22rem] flex-col justify-between p-6 sm:p-8">
+            <Logo className="h-14 w-14" />
+            <div>
+              <p className="font-[family-name:var(--font-display)] text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+                One company.
+                <span className="block text-accent">Every layer.</span>
+              </p>
+              <ol className="mt-5 flex flex-wrap gap-2">
+                {focus.map((item, itemIndex) => (
+                  <li key={item}>
+                    <button
+                      type="button"
+                      onClick={() => setIndex(itemIndex)}
+                      className={`rounded-full border px-3 py-1.5 text-left text-xs transition-colors ${
+                        itemIndex === index
+                          ? "border-transparent bg-foreground text-background"
+                          : "border-border bg-card text-muted"
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <p className="self-end rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted">
+              Lahore · Remote worldwide
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

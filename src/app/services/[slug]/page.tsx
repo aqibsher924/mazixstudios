@@ -34,8 +34,8 @@ export default async function ServicePage({
 
   return (
     <>
-      <header className="hero-mesh border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 pb-16 pt-32 sm:px-8 sm:pt-40">
+      <header className="px-3 pt-28 sm:px-5 sm:pt-32">
+        <div className="glass-slab mx-auto max-w-6xl">
           <Link href="/services" className="section-label hover:text-foreground">
             Services
           </Link>

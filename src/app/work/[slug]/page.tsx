@@ -34,8 +34,8 @@ export default async function ProjectPage({
 
   return (
     <>
-      <header className="border-b border-border">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 pb-16 pt-32 sm:px-8 sm:pt-40 lg:grid-cols-2 lg:items-end">
+      <header className="px-3 pt-28 sm:px-5 sm:pt-32">
+        <div className="glass-slab mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-end">
           <div>
             <Link href="/work" className="section-label hover:text-foreground">
               Work

@@ -1,31 +1,33 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Logo } from "@/components/brand/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { clsx } from "clsx";
 
 const nav = [
-  { href: "/services", label: "Services" },
-  { href: "/work", label: "Engagements" },
-  { href: "/industries", label: "Fields" },
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/process", label: "Process" },
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/industries", label: "Fields" },
   { href: "/contact", label: "Contact" },
 ];
 
-export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+function isCurrent(href: string, path: string) {
+  if (href === "/") return path === "/";
+  return path === href || path.startsWith(`${href}/`);
+}
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+export function Header() {
+  const path = usePathname();
+  const [open, setOpen] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
+  const turbRef = useRef<SVGFETurbulenceElement>(null);
+  const dispRef = useRef<SVGFEDisplacementMapElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -34,138 +36,176 @@ export function Header() {
     };
   }, [open]);
 
-  return (
-    <>
-      <header
-        className={clsx(
-          "fixed inset-x-0 top-0 z-40 transition-all duration-300",
-          scrolled && !open
-            ? "glass border-b border-border"
-            : "bg-transparent",
-        )}
-      >
-        <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-6 px-5 sm:px-8">
-          <Link
-            href="/"
-            className="group flex items-center gap-3"
-            onClick={() => setOpen(false)}
-          >
-            <Image
-              src="/brand/logo-mark.png"
-              alt=""
-              width={140}
-              height={102}
-              priority
-              className="h-9 w-auto"
-            />
-            <span className="flex flex-col leading-none">
-              <span className="text-[15px] font-semibold tracking-tight">
-                Mazix
-              </span>
-              <span className="mt-0.5 text-[9px] uppercase tracking-[0.28em] text-muted-foreground">
-                Studios
-              </span>
-            </span>
-          </Link>
+  useEffect(() => {
+    setOpen(false);
+  }, [path]);
 
-          <nav
-            className="hidden items-center gap-8 lg:flex"
-            aria-label="Primary"
-          >
-            {nav.map((item) => (
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const bar = barRef.current;
+    const turb = turbRef.current;
+    const disp = dispRef.current;
+    if (!bar || !turb || !disp) return;
+    if (reduce) {
+      disp.setAttribute("scale", "0");
+      return;
+    }
+
+    let frame = 0;
+    let target = 10;
+    let current = 10;
+    let freq = 0.012;
+    let targetFreq = 0.012;
+    let lastMove = 0;
+    let lastX = 0;
+    let lastY = 0;
+
+    const tick = (now: number) => {
+      if (now - lastMove > 450) {
+        target = 8 + Math.sin(now / 800) * 4;
+        targetFreq = 0.01 + Math.sin(now / 1200) * 0.002;
+      }
+      current += (target - current) * 0.12;
+      freq += (targetFreq - freq) * 0.12;
+      disp.setAttribute("scale", current.toFixed(2));
+      turb.setAttribute("baseFrequency", `${freq.toFixed(4)} ${(freq * 1.8).toFixed(4)}`);
+      frame = requestAnimationFrame(tick);
+    };
+
+    const onMove = (event: PointerEvent) => {
+      const rect = bar.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) * 100;
+      const y = ((event.clientY - rect.top) / rect.height) * 100;
+      bar.style.setProperty("--lx", `${x}%`);
+      bar.style.setProperty("--ly", `${y}%`);
+      const speed = Math.min(36, Math.hypot(event.clientX - lastX, event.clientY - lastY));
+      target = 6 + speed * 1.1;
+      targetFreq = 0.01 + speed * 0.0004;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      lastMove = performance.now();
+    };
+
+    bar.addEventListener("pointermove", onMove);
+    frame = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(frame);
+      bar.removeEventListener("pointermove", onMove);
+    };
+  }, []);
+
+  return (
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+      <svg className="absolute h-0 w-0" aria-hidden>
+        <filter id="mazix-nav-liquid" x="-20%" y="-40%" width="140%" height="180%">
+          <feTurbulence
+            ref={turbRef}
+            type="fractalNoise"
+            baseFrequency="0.012 0.02"
+            numOctaves="2"
+            seed="2"
+            result="noise"
+          />
+          <feDisplacementMap
+            ref={dispRef}
+            in="SourceGraphic"
+            in2="noise"
+            scale="10"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </svg>
+
+      <div ref={barRef} className="liquid-nav pointer-events-auto mx-auto flex max-w-6xl items-center gap-1 p-1.5 sm:gap-2 sm:p-2">
+        <span className="liquid-nav-ripple" aria-hidden />
+        <Link href="/" className="relative z-10 inline-flex min-w-0 items-center gap-2 rounded-full py-1.5 pl-1.5 pr-3">
+          <Logo className="h-8 w-8 shrink-0" />
+          <span className="truncate text-[15px] font-semibold tracking-tight">Mazix.</span>
+        </Link>
+
+        <nav className="relative z-10 ml-auto hidden min-w-0 items-center gap-0.5 lg:flex" aria-label="Primary">
+          {nav.map((item) => {
+            const current = isCurrent(item.href, path);
+            return (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted transition-colors duration-200 hover:text-foreground"
+                aria-current={current ? "page" : undefined}
+                className={clsx(
+                  "rounded-full px-3 py-2 text-sm whitespace-nowrap transition-colors",
+                  current ? "bg-foreground/10 text-foreground" : "text-muted hover:text-foreground",
+                )}
               >
                 {item.label}
               </Link>
-            ))}
-          </nav>
+            );
+          })}
+          <ThemeToggle />
+        </nav>
 
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <Link
-              href="/contact"
-              className="hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] sm:inline-flex"
-            >
-              Start a project
-            </Link>
-            <button
-              type="button"
-              className="glass inline-flex h-10 w-10 items-center justify-center rounded-full border border-border lg:hidden"
-              aria-expanded={open}
-              aria-label={open ? "Close menu" : "Open menu"}
-              onClick={() => setOpen((v) => !v)}
-            >
-              {open ? (
-                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
-                  <path
-                    d="M6 6l12 12M18 6L6 18"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              ) : (
-                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
-                  <path
-                    d="M4 7h16M4 12h16M4 17h10"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
+        <div className="relative z-10 ml-auto flex items-center gap-1 lg:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full"
+            aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+                <path d="M4 7h16M4 12h16M4 17h12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
         </div>
-      </header>
+      </div>
 
       <AnimatePresence>
         {open ? (
-          <motion.div
-            className="glass fixed inset-0 z-30 flex flex-col justify-center px-8 lg:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            <nav className="flex flex-col gap-2" aria-label="Mobile">
-              {nav.map((item, i) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.06 * i, duration: 0.4 }}
-                >
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close menu"
+              className="pointer-events-auto fixed inset-0 z-40 bg-[#070b12]/70 lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+            />
+            <motion.nav
+              className="pointer-events-auto relative z-50 mx-auto mt-2 w-full max-w-6xl rounded-3xl border border-border bg-card p-2 shadow-card backdrop-blur-2xl lg:hidden"
+              aria-label="Mobile"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+            >
+              {nav.map((item) => {
+                const current = isCurrent(item.href, path);
+                return (
                   <Link
+                    key={item.href}
                     href={item.href}
-                    className="headline-serif block py-3 text-4xl text-foreground transition-colors hover:text-accent"
+                    aria-current={current ? "page" : undefined}
+                    className={clsx(
+                      "block rounded-2xl px-4 py-3.5 text-base font-medium",
+                      current ? "bg-foreground/10 text-foreground" : "text-foreground/80",
+                    )}
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
                   </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.06 * nav.length, duration: 0.4 }}
-                className="mt-8"
-              >
-                <Link
-                  href="/contact"
-                  className="inline-flex rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white"
-                  onClick={() => setOpen(false)}
-                >
-                  Start a project ↗
-                </Link>
-              </motion.div>
-            </nav>
-          </motion.div>
+                );
+              })}
+            </motion.nav>
+          </>
         ) : null}
       </AnimatePresence>
-    </>
+    </header>
   );
 }

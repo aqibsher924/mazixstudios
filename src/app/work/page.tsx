@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { engagements, getProject } from "@/lib/site";
-import { PageCta, PageHero } from "@/components/site/page-hero";
+import { EngagementBoard } from "@/components/site/engagement-board";
+import { PageCta } from "@/components/site/page-hero";
 
 export const metadata: Metadata = {
   title: "Engagements | Mazix Studios",
@@ -13,42 +11,19 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
-      <PageHero
-        kicker="Engagements"
-        title="Work the company can name."
-        body="Most systems Mazix runs are private. These are engagements we are able to describe. They are not a catalogue of every internal task."
-      />
-      <section className="mx-auto grid max-w-6xl gap-6 px-5 py-16 sm:px-8 md:grid-cols-2">
-        {engagements.map((slug) => {
-          const project = getProject(slug);
-          if (!project) return null;
-          return (
-          <Link
-            key={project.slug}
-            href={`/work/${project.slug}`}
-            className="card-hover shadow-card overflow-hidden rounded-3xl border border-border bg-card"
-          >
-            <div className="relative aspect-[16/10]">
-              <Image
-                src={project.image}
-                alt={project.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="p-6">
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
-                {project.meta}
-              </p>
-              <h2 className="mt-2 text-xl font-semibold">{project.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                {project.summary}
-              </p>
-            </div>
-          </Link>
-          );
-        })}
+      <section className="px-3 pt-28 sm:px-4 sm:pt-32">
+        <div className="glass-slab mx-auto max-w-6xl">
+          <p className="section-label">Engagements</p>
+          <h1 className="headline-serif mt-4 max-w-3xl text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.02]">
+            Work the company can name.
+          </h1>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+            Most systems stay private. These seven are the ones we can put on the table.
+          </p>
+        </div>
+        <div className="mx-auto mt-4 max-w-6xl">
+          <EngagementBoard />
+        </div>
       </section>
       <PageCta />
     </>
